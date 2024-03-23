@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "dev": "ts-node index.ts"
+    "dev": "ts-node src/index.ts"
   },
   "dependencies": {
     "pino": "^8.19.0",

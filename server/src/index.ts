@@ -2,6 +2,7 @@ import uWS from "uWebSockets.js";
 import pino from "pino";
 import { IError, IMessage } from "./types";
 import { execute } from "./cmds";
+import { db } from "./db";
 
 const PORT = 8083;
 
@@ -43,6 +44,13 @@ app.ws("/*", {
     logger.debug("WebSocket opened", {
       address: ws.getRemoteAddressAsText(),
     });
+
+    ws.send(
+      JSON.stringify({
+        state: db.getState(),
+        type: "SetState",
+      }),
+    );
   },
 });
 
